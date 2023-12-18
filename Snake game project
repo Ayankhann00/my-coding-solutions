@@ -13,7 +13,7 @@ const int size = 20; // size of snake body block
 
 int snakeX[100], snakeY[100]; // using an array for snake because it increases in length
 
-int length = 2; // default length
+int length = 1; // default length
 
 int direction = 1; // 1: right, 2: down, 3: left, 4: up
 
@@ -49,12 +49,17 @@ void draw_snake()
 // Generate food rendering
 void GenerateFood()
 {
-    // Set a random location for the food box on the x-y axis
-    foodX = rand() % (600 / size) * size;
-    foodY = rand() % (450 / size) * size;
+    // Set a random location for the food box inside the screen
+    // Adjust the range to ensure that the food spawns away from the edges
+    foodX = (rand() % ((ScreenWidth - 6 * size) / size) + 2) * size;
+    foodY = (rand() % ((ScreenHeight - 6 * size) / size) + 2) * size;
 
-    rectangle(foodX, foodY, foodX + size, foodY + size);
+    setfillstyle(SOLID_FILL, YELLOW); // Set fill style to solid and color to yellow
+    rectangle(foodX, foodY, foodX + size, foodY + size); // Draw the food box
+    floodfill(foodX + 1, foodY + 1, YELLOW); // Fill the rectangle with yellow
 }
+
+
 
 //void Point_system()
 //{//   char a = length ; 
@@ -70,7 +75,7 @@ void GenerateFood()
 int main()
 {
     initwindow(ScreenWidth, ScreenHeight, "Snake Game"); // Set the main window size
-    setbkcolor(CYAN);                                      // Set window color
+    setbkcolor(LIGHTBLUE);                                      // Set window color
 
     // Initialize snake position (head position)
     snakeX[0] = 100;
@@ -141,18 +146,23 @@ int main()
             break;
         }
 	
-	if(snakeX[0] == foodX && snakeY[0] == foodY )
-	{
-		  GenerateFood(); 
-		  length++;
-	}
+	if (snakeX[0] == foodX && snakeY[0] == foodY)
+{
+    GenerateFood();
+    length++;
+
+    // Add a new segment at the end of the snake's body
+    snakeX[length - 1] = snakeX[length - 2];
+    snakeY[length - 1] = snakeY[length - 2];
+}
+
 	
 	
         rectangle(foodX, foodY, foodX + size, foodY + size); // food gernate
 
         draw_snake(); // snake draw
 
-        delay(550);
+        delay(250);
         
     } // close loop
 
