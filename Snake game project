@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <conio.h>
 #include <graphics.h>
@@ -13,7 +14,7 @@ const int size = 20; // size of snake body block
 
 int snakeX[100], snakeY[100]; // using an array for snake because it increases in length
 
-int length = 1; // default length
+int length = 2; // default length
 
 int direction = 1; // 1: right, 2: down, 3: left, 4: up
 
@@ -54,9 +55,7 @@ void GenerateFood()
     foodX = (rand() % ((ScreenWidth - 6 * size) / size) + 2) * size;
     foodY = (rand() % ((ScreenHeight - 6 * size) / size) + 2) * size;
 
-    setfillstyle(SOLID_FILL, YELLOW); // Set fill style to solid and color to yellow
     rectangle(foodX, foodY, foodX + size, foodY + size); // Draw the food box
-    floodfill(foodX + 1, foodY + 1, YELLOW); // Fill the rectangle with yellow
 }
 
 
@@ -72,10 +71,11 @@ void GenerateFood()
 
 
 // Main function -------------------------------------------------------------------------------------
+
 int main()
 {
     initwindow(ScreenWidth, ScreenHeight, "Snake Game"); // Set the main window size
-    setbkcolor(LIGHTBLUE);                                      // Set window color
+    setbkcolor(CYAN);                                      // Set window color
 
     // Initialize snake position (head position)
     snakeX[0] = 100;
@@ -87,7 +87,7 @@ int main()
     while (1)
     {
         cleardevice();
-        rectangle(10, 10, 780, 500);
+        rectangle(10, 10, 780, 550);
                 
 
 
@@ -136,7 +136,7 @@ int main()
 
 
         // Wall collision
-        if (snakeX[0] >= 780 || snakeX[0] <= 10 || snakeY[0] >= 500 || snakeY[0] < 10)
+        if (snakeX[0] >= 780 || snakeX[0] <= 10 || snakeY[0] >= 550 || snakeY[0] < 10)
         {
             setcolor(RED);
             settextstyle(DEFAULT_FONT, HORIZ_DIR, 4);
@@ -145,24 +145,39 @@ int main()
             closegraph();
             break;
         }
+        
+        
 	
 	if (snakeX[0] == foodX && snakeY[0] == foodY)
 {
     GenerateFood();
     length++;
 
-    // Add a new segment at the end of the snake's body
-    snakeX[length - 1] = snakeX[length - 2];
-    snakeY[length - 1] = snakeY[length - 2];
+ 
 }
 
-	
-	
+
+// snake collion 
+for (int i = 1; i < length -1 ; i++)
+        {
+            if (snakeX[0] == snakeX[i] && snakeY[0] == snakeY[i]  )
+            {
+            	setcolor(RED);
+            settextstyle(DEFAULT_FONT, HORIZ_DIR, 4);
+            outtextxy(200, 200, "GAME OVER");
+            delay(2000);
+            closegraph();
+            break;
+            	
+			}
+        }
+
+
         rectangle(foodX, foodY, foodX + size, foodY + size); // food gernate
 
         draw_snake(); // snake draw
 
-        delay(250);
+        delay(50);
         
     } // close loop
 
