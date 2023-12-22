@@ -1,0 +1,79 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+const int MAX_STUDENTS = 100;
+
+struct Student
+{
+    int studentID;
+    string name;
+    int marks[5]; // student marks.
+    double average;
+};
+
+void InputInformation(Student arr[], int n)
+{
+    // information of students.
+    for (int i = 0; i < n; i++)
+    {
+        cout << "Input information for student " << i + 1 << ":\n";
+        cout << "Input the student ID of students :" << endl;
+        cin >> arr[i].studentID;
+        cout << "Enter the name:" << endl;
+        cin.ignore(); // To clear the newline character left in the buffer
+        getline(cin, arr[i].name);
+        cout << "Enter the marks:" << endl;
+        for (int j = 0; j < 5; j++)
+        {
+            cin >> arr[i].marks[j];
+        }
+    }
+}
+
+void DisplayStudentData(const Student arr[], int n)
+{
+    cout << "\nStudent Information:\n";
+    cout << "---------------------------------------------\n";
+    cout << "ID      | Name               | Marks\n";
+    cout << "---------------------------------------------\n";
+
+    for (int i = 0; i < n; ++i)
+    {
+        cout << arr[i].studentID << "   | " << arr[i].name;
+
+        // Adjusting spaces based on name length
+        for (int space = arr[i].name.length(); space < 20; ++space)
+        {
+            cout << " ";
+        }
+
+        cout << "| ";
+
+        for (int j = 0; j < 5; ++j)
+        {
+            cout << arr[i].marks[j] << " ";
+        }
+
+        cout << endl;
+    }
+
+    cout << "---------------------------------------------\n";
+}
+
+int main()
+{
+    Student Students[MAX_STUDENTS];
+
+    int n;
+    cout << "Enter the number of students:" << endl;
+    cin >> n;
+
+    InputInformation(Students, n);
+
+    // Display information for each student
+    DisplayStudentData(Students, n);
+
+    return 0;
+}
