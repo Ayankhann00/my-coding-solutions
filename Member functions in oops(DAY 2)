@@ -1,0 +1,60 @@
+//member functions in OOPS c++(DAY 2)
+#include <iostream>
+using namespace std;
+
+class binary
+{
+private:
+    string s;
+
+public:
+    void read(void);
+    void check_binary(void);
+    string compliment_binary(void);
+};
+
+void binary::read(void)
+{
+    cout << "Enter the binary num: ";
+    cin >> s;
+}
+
+void binary::check_binary(void)
+{
+    for (int i = 0; i < s.length(); i++)
+    {
+        if (s.at(i) != '0' && s.at(i) != '1')
+        {
+            cout << "Not Binary" << endl;
+            return;
+        }
+    }
+    cout << "Binary" << endl;
+}
+
+string binary::compliment_binary(void)
+{
+    string complementedBinary = "";
+    for (int i = 0; i < s.length(); i++)
+    {
+        if (s.at(i) == '0')
+        {
+            complementedBinary += '1';
+        }
+        else
+        {
+            complementedBinary += '0';
+        }
+    }
+    return complementedBinary;
+}
+
+int main()
+{
+    binary b;
+    b.read();
+    b.check_binary();
+    cout << "Complemented Binary: " << b.compliment_binary() << endl;
+
+    return 0;
+}
