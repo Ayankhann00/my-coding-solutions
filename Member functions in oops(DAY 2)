@@ -58,3 +58,46 @@ int main()
 
     return 0;
 }
+//book objects
+#include <iostream>
+using namespace std;
+class Book
+{
+private:
+    string title;
+    string author;
+
+public:
+    void settitle(string t);
+    void setauthor(string a);
+    void show();
+};
+void Book::settitle(string t)
+{
+    title = t;
+}
+void Book::setauthor(string a)
+{
+    author = a;
+}
+void Book::show()
+{
+    cout << "Title :" << title << endl;
+    cout << "Author:" << author << endl;
+}
+
+int main()
+{
+    Book b1, b2;
+    b1.settitle("The alchemist");
+    b1.setauthor("Paulo Coelho");
+    b2.settitle("Harry potter and the philospher's");
+    b2.settitle("Jk Rowlings");
+    int n = 2;
+    cout << "Displaying book 1 details:\n";
+    b1.show();
+    cout << "\n\nDisplaying " << n << "th book details.\n";
+    b2.show();
+  
+    return 0;
+}
