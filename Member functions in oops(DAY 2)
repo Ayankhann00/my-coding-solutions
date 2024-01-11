@@ -101,3 +101,35 @@ int main()
   
     return 0;
 }
+// HOW TO GET PRODUCT OF COMPLEX NUMBERS USING OOPS IN C++
+#include <iostream>
+using namespace std;
+class ComplexNums
+{
+private:
+    int a;
+    int b;
+
+public:
+    void SetComplex(int v1, int v2)
+    {
+        a = v1;
+        b = v2;
+    }
+    void ComplexSum(int O1, int O2)
+    {
+        a = 01.a + O2.a;
+        b = 01.b + 02.b;
+    }
+    void GetComplexSum(void)
+    {
+        cout << "The sum is :" << a << "+" << b * "i" << endl;
+    }
+};
+int main()
+{
+    SetComplex(3, 4);
+    ComplexSum(7, 6);
+    GetComplexSum();
+    return 0;
+}
