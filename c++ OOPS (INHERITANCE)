@@ -157,3 +157,47 @@ int main()
 
     return 0;
 }
+#include <iostream>
+using namespace std;
+class Employee
+{
+public:
+    int id;
+    float salary;
+
+    void getdata(int i, float s)
+    {
+        id = i;
+        salary = s;
+    }
+};
+class Programmer : public Employee
+{
+private:
+    string name;
+
+public:
+    void getname(string n)
+    {
+        name = n;
+    }
+    void display()
+    {
+        cout << id << endl;
+        cout << salary << endl;
+        cout << name << endl;
+    }
+};
+
+int main()
+{
+    Employee Ayan;
+    Ayan.getdata(5, 3);
+    cout << Ayan.id << endl;
+    cout << Ayan.salary << endl;
+    Programmer Ahmed;
+    Ahmed.getname("ahmed");
+    Ahmed.display();
+
+    return 0;
+}
