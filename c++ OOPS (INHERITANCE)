@@ -201,3 +201,86 @@ int main()
 
     return 0;
 }
+
+#include <iostream>
+using namespace std;
+
+class studentmarks
+{
+protected:
+    int rollno;
+
+public:
+    void set_marks(int);
+    void get_marks(void);
+};
+
+void studentmarks::set_marks(int r)
+{
+    rollno = r;
+}
+
+void studentmarks::get_marks()
+{
+    cout << "The rollno is: " << rollno << endl;
+}
+
+class ExamStudent : public studentmarks
+{
+protected:
+    float maths;
+    float physics;
+
+public:
+    void set_marks(float, float);
+    void get_marks(void);
+};
+
+void ExamStudent::set_marks(float m, float p)
+{
+    maths = m;
+    physics = p;
+}
+
+void ExamStudent::get_marks()
+{
+    cout << "The maths marks is: " << maths << endl;
+    cout << "The physics marks is: " << physics << endl;
+}
+
+class Result : public ExamStudent
+{
+protected:
+    float percentage;
+
+public:
+    void calculate_percentage();
+    void get_marks();
+};
+
+void Result::calculate_percentage()
+{
+    percentage = (maths + physics) / 2;
+}
+
+void Result::get_marks()
+{
+    cout << "The percentage is: " << percentage << "%" << endl;
+}
+
+int main()
+{
+    studentmarks s;
+    s.set_marks(5);
+    s.get_marks();
+
+    ExamStudent e;
+    e.set_marks(8, 7);
+    e.get_marks();
+
+    Result r;
+    r.calculate_percentage();
+    r.get_marks();
+
+    return 0;
+}
