@@ -183,3 +183,78 @@ int main()
 
     return 0;
 }
+#include <iostream>
+using namespace std;
+
+struct student
+{
+private:
+    string Name;
+    int regNo;
+    float Sessional_Marks;
+    float Mid_Marks;
+    float Final_Marks;
+    float Total_Marks;
+    string grade;
+
+public:
+    void init_values()
+    {
+        int n;
+        cout << "Enter the number of students:" << endl;
+        cin >> n;
+        for (int i = 0; i < n; i++)
+        {
+            cout << "Enter the name of student:" << i + 1 << endl;
+            cin >> Name;
+            cout << "Enter the regNo:" << endl;
+            cin >> regNo;
+            cout << "Enter the sessional marks:" << endl;
+            cin >> Sessional_Marks;
+            cout << "Enter the Mid term marks:" << endl;
+            cin >> Mid_Marks;
+            cout << "Enter the final term marks:" << endl;
+            cin >> Final_Marks;
+            Total_Marks = Sessional_Marks + Mid_Marks + Final_Marks;
+            find_Grade();
+        }
+    }
+    void find_Grade()
+    {
+        if (Total_Marks >= 90)
+        {
+            grade = "A";
+        }
+        else if (Total_Marks >= 80 && Total_Marks <= 89)
+        {
+            grade = "A-";
+        }
+        else if (Total_Marks >= 70 && Total_Marks <= 79)
+        {
+            grade = "B";
+        }
+        else
+        {
+            grade = "F";
+        }
+    }
+    void display_record()
+    {
+        cout << "name:" << Name << endl;
+        cout << "Registration number:" << regNo << endl;
+        cout << "Sessional Marks:" << Sessional_Marks << endl;
+        cout << "Mid Term Marks:" << Mid_Marks << endl;
+        cout << "Final Term Marks:" << Final_Marks << endl;
+        cout << "Total Marks:" << Total_Marks << endl;
+        cout << "Grade is :" << grade << endl;
+    }
+};
+
+int main()
+{
+
+    student record;
+    record.init_values();
+    record.display_record();
+    return 0;
+}
