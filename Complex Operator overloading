@@ -43,3 +43,38 @@ int main()
     cout << "The product is:" << product << endl;
     return 0;
 }
+
+#include <iostream>
+using namespace std;
+class Vector
+{
+    int x, y;
+
+public:
+    Vector(int a = 0, int b = 0) : x(a), y(b) {}
+    Vector operator+(const Vector &point)
+    {
+        return Vector(x + point.x, y + point.y);
+    }
+    friend ostream &operator<<(ostream &os, const Vector &point)
+    {
+        os << "(" << point.x << "," << point.y << ")" << endl;
+        return os;
+    }
+    void display()
+    {
+        cout << "The resultant vector after addition is:" << *this << endl;
+    }
+};
+int main()
+{
+    Vector *v1 = new Vector(2, 3);
+    Vector *v2 = new Vector(4, 5);
+
+    Vector addition = *v1 + *v2;
+    addition.display();
+    delete v1;
+    delete v2;
+
+    return 0;
+}
